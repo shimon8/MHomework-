@@ -1,23 +1,114 @@
 import random
+import sys
 
+from Queue import Queue
 from Stack import Stack
 
-MAX_STACK_SIZE = 20
-MIN_MAX_VALUE_IN_STACK = 1000
+# region Question1
+MAX_SIZE = 20
+MIN_MAX_VALUE = 1000
+DATA_STRUCTURE_TYPES = ["Queue", "Stack"]
+
+"""
+the param data_structure_type neet to be Queue OR Stack 
+"""
 
 
-def exampleStack():
-    stack_size = random.randint(1, MAX_STACK_SIZE)
-    stack = Stack()
-    for i in range(stack_size):
-        stack.push(random.randint(-MIN_MAX_VALUE_IN_STACK, MIN_MAX_VALUE_IN_STACK))
+def exampleQ1(data_structure_type):
+    if data_structure_type.upper() == 'QUEUE':
+        data_structure = Queue()
+    elif data_structure_type.upper() == 'STACK':
+        data_structure = Stack()
+    else:
+        print("the data structure need to be Stack OR Queue")
+        sys.exit(1)
 
-    print("current size: ", stack.size())
-    stack.pop()
-    stack.pop()
-    print(stack.top())
-    print("current size: ", stack.size())
+    print(f"the data structure that chosen is {data_structure_type}.")
+    size = random.randint(1, MAX_SIZE)
+    print(f"the size of {data_structure_type} is: ", size)
+
+    for i in range(size):
+        current_item = random.randint(-MIN_MAX_VALUE, MIN_MAX_VALUE)
+        print(f"push the value: {current_item}")
+        data_structure.push(current_item)
+    for i in range(size):
+        if data_structure_type.upper() == 'STACK':
+            val = data_structure.top()
+            data_structure.pop()
+        else:
+            val = data_structure.pop()
+        print(f"pop: {val}")
+
+
+# endregion
+
+
+# region Question2
+def check_dim(dim):
+    try:
+        dim_int = int(dim)
+        if dim_int <= 0:
+            raise Exception("dim paramter need to grater than 0")
+
+    except ValueError:
+        print("dim paramter need to bee integer")
+        sys.exit(1)
+    except Exception as error:
+        print(error)
+        sys.exit(1)
+
+
+def print_matrix_by_dict(dim: int):
+    check_dim(dim)
+    range_len = dim ** 2
+    matrix_dict = {}
+    index = 1
+    # init matrix
+    for i in range(1, range_len, dim):
+        matrix_dict[index] = list(range(i, i + dim))
+        index = index + 1
+    # printing matrix
+    for key, value in matrix_dict.items():
+        cur_val = ''.join(str(v) for v in value)
+        print(f"{key}. {cur_val}")
+
+
+def print_matrix_by_list(dim: int):
+    check_dim(dim)
+    range_len = dim ** 2
+    matrix_list = []
+
+    # init matrix
+    for i in range(1, range_len, dim):
+        matrix_list.append(list(range(i, i + dim)))
+    # printing matrix
+    for index, values in enumerate(matrix_list):
+        cur_val = ''.join(str(v) for v in values)
+        print(f"{index + 1}. {cur_val}")
+
+
+def print_matrix_by_variables(dim: int):
+    check_dim(dim)
+    range_len = dim ** 2
+    # printing matrix
+    for index, val in enumerate(range(1, range_len, dim)):
+        current = ''.join(str(v) for v in range(val, val + dim))
+        print(f"{index + 1}. {current}")
+
+
+def exampleQ2():
+    print("print matrix by dict")
+    print_matrix_by_dict(3)
+    print("print matrix by list")
+    print_matrix_by_list(5)
+    print("print matrix by variables")
+    print_matrix_by_list(4)
+
+
+# endregion
 
 
 if __name__ == '__main__':
-    exampleStack()
+
+    exampleQ1(random.choice(DATA_STRUCTURE_TYPES))
+    exampleQ2()
