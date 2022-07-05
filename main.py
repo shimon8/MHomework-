@@ -1,7 +1,7 @@
 import random
 import sys
 
-from Queue import Queue
+from MyQueue import MyQueue
 from Stack import Stack
 
 # region Question1
@@ -10,13 +10,13 @@ MIN_MAX_VALUE = 1000
 DATA_STRUCTURE_TYPES = ["Queue", "Stack"]
 
 """
-the param data_structure_type neet to be Queue OR Stack 
+the param data_structure_type need to be Queue OR Stack 
 """
 
 
 def exampleQ1(data_structure_type):
     if data_structure_type.upper() == 'QUEUE':
-        data_structure = Queue()
+        data_structure = MyQueue()
     elif data_structure_type.upper() == 'STACK':
         data_structure = Stack()
     else:

@@ -1,4 +1,4 @@
-class Queue(object):
+class MyQueue(object):
     def __init__(self):
         self.input = []
         self.output = []
