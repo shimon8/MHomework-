@@ -22,23 +22,23 @@ class Stack(object):
 
         self.curr_size -= 1
         value = self.q1.get()
-        self.q = self.q1
+        q = self.q1
         self.q1 = self.q2
-        self.q2 = self.q
+        self.q2 = q
         return value
 
     def top(self):
-        if (self.q1.empty()):
+        if self.q1.empty():
             return
-        while (self.q1.qsize() != 1):
+        while self.q1.qsize() != 1:
             self.q2.put(self.q1.get())
 
         top = self.q1.queue[0]
         self.q2.put(self.q1.get())
 
-        self.q = self.q1
+        q = self.q1
         self.q1 = self.q2
-        self.q2 = self.q
+        self.q2 = q
 
         return top
 

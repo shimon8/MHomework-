@@ -32,11 +32,7 @@ def exampleQ1(data_structure_type):
         print(f"push the value: {current_item}")
         data_structure.push(current_item)
     for i in range(size):
-        if data_structure_type.upper() == 'STACK':
-            val = data_structure.top()
-            data_structure.pop()
-        else:
-            val = data_structure.pop()
+        val = data_structure.pop()
         print(f"pop: {val}")
 
 
@@ -109,6 +105,7 @@ def exampleQ2():
 
 
 if __name__ == '__main__':
-
+    # exampleQ1(DATA_STRUCTURE_TYPES[1])
+    # exampleQ1(DATA_STRUCTURE_TYPES[0])
     exampleQ1(random.choice(DATA_STRUCTURE_TYPES))
     exampleQ2()
